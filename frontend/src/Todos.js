@@ -176,13 +176,13 @@ function Todos() {
           >
             Add
           </Button>
-          {/* <Button
+          <Button
             className={classes.addTodoButton}
             startIcon={<Icon>add</Icon>}
             onClick={() => todos.sort(byDate)}
           >
            SORT
-          </Button> */}
+          </Button>
           
          
         </Box>
