@@ -54,12 +54,7 @@ function Todos() {
       .then((todos) => setTodos(todos));
   }, [setTodos]);
 
-  function byDate(a, b) {
-    //chronologically by year, month, then day
-    return new Date(a.date).valueOf() - new Date(b.date).valueOf(); //timestamps
-    
-  }
- 
+  
 
   function addTodo(text,date, time) {
     fetch("http://localhost:3001/", {
@@ -118,11 +113,25 @@ function Todos() {
 
 
   }
+  // for sorting the lists
+  function byDate(a, b) {
+    //chronologically by year, month, then day
+    return new Date(a.date).valueOf() - new Date(b.date).valueOf(); //timestamps
+    
+  }
+ function swap() {
+  let swaptodos = [...todos]
+  setTodos(swaptodos.sort(byDate))
+ }
   //console.log(todos.sort(by));
     return (  
       <DragDropContext onDragEnd={(results) => handleDragEnd(results)}>
         
-        <Container maxWidth="md">
+        <Container maxWidth="md" style={{
+        backgroundColor: 'yellow'
+      
+      }} >
+        
         <Typography variant="h3" component="h1" gutterBottom>
         Todos
       </Typography>
@@ -133,7 +142,7 @@ function Todos() {
            
             <TextField
          
-        
+        placeholder ='Task name'
          value={newTodoText}
          onKeyPress={(event) => {
            if (event.key === "Enter") {
@@ -179,16 +188,13 @@ function Todos() {
           <Button
             className={classes.addTodoButton}
             startIcon={<Icon>add</Icon>}
-            onClick={() => todos.sort(byDate)}
+            onClick={() => swap()}
           >
            SORT
           </Button>
-          
-         
+    
+
         </Box>
-        
-        
-        
       </Paper>
       { todos.length > 0 && (
           <Droppable droppableId="draggable-1">
@@ -222,7 +228,7 @@ function Todos() {
                       className={completed ? classes.todoTextCompleted : ""}
                       variant="body1"
                     >
-                      {text} {date} {time}
+                      Task:{text} | Date:{date} | Time:{time}
                      
                     </Typography>
                   </Box>
