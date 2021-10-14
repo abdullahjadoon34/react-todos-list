@@ -1,7 +1,10 @@
 const { MongoClient } = require('mongodb');
+const express = require("express")
+require('dotenv').config();
 
 const database = module.exports;
-//'mongodb://root:1234@database/
+const uri =`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.fgk07.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
+
 database.connect = async function connect() {
-  database.client = await MongoClient.connect('mongodb://localhost:27017/database', { useUnifiedTopology: true });
+  database.client = await MongoClient.connect(uri, { useUnifiedTopology: true });
 };
