@@ -24,3 +24,8 @@ once the app is running you can open:
 http://localhost:3000
 
 on your browser.
+
+## Deployment
+frontend : https://todoslist-83559.web.app
+
+

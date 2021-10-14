@@ -49,7 +49,7 @@ function Todos() {
   const [newtime, setnewtime] = useState("");
   //todos.sort(byDate)
   useEffect(() => {
-    fetch("http://localhost:3001/")
+    fetch("https://todoslss.herokuapp.com/")
       .then((response) => response.json())
       .then((todos) => setTodos(todos));
   }, [setTodos]);
@@ -57,7 +57,7 @@ function Todos() {
   
 
   function addTodo(text,date, time) {
-    fetch("http://localhost:3001/", {
+    fetch("https://todoslss.herokuapp.com/", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ function Todos() {
   }
   
   function toggleTodoCompleted(id) {
-    fetch(`http://localhost:3001/${id}`, {
+    fetch(`https://todoslss.herokuapp.com/${id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -95,7 +95,7 @@ function Todos() {
   }
  
   function deleteTodo(id) {
-    fetch(`http://localhost:3001/${id}`, {
+    fetch(`https://todoslss.herokuapp.com/${id}`, {
       method: "DELETE",
     }).then(() => setTodos(todos.filter((todo) => todo.id !== id)));
   }
